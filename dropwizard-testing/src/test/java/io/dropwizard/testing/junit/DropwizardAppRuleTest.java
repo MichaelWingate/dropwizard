@@ -15,6 +15,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import java.io.PrintWriter;
+import java.util.Optional;
 
 import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
 import static org.hamcrest.core.Is.is;
@@ -25,7 +26,8 @@ public class DropwizardAppRuleTest {
 
     @ClassRule
     public static final DropwizardAppRule<TestConfiguration> RULE =
-            new DropwizardAppRule<>(TestApplication.class, resourceFilePath("test-config.yaml"));
+            new DropwizardAppRule<>(TestApplication.class, resourceFilePath("test-config.yaml"),
+                Optional.of("app-rule-test"));
 
     @Test
     public void canGetExpectedResourceOverHttp() {
